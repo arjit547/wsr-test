@@ -13,16 +13,14 @@ hooks:
 
 deploy:
   - destination: /var/www/html/wsr-arjit
-    source: /var/www/html/main
+    source: /
+    branch: main
     phase: BeforeInstall
-    conditions:
-      - !Equals [ "refs/heads/main", "{CODEDEPLOY_REPO}", true ]
 
   - destination: /var/www/html/wsr-arjit-uni
-    source: /var/www/html/upload
+    source: /
+    branch: upload
     phase: BeforeInstall
-    conditions:
-      - !Equals [ "refs/heads/dev", "{CODEDEPLOY_REPO}", true ]
 
 
 
