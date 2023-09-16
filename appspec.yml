@@ -1,10 +1,7 @@
 version: 0.0
 os: linux
 files:
-  - source: /
-    destination: /var/www/html/wsr-arjit
-    pattern: "**"
-    overwrite: true
+
 
   - source: /
     destination: /var/www/html/wsr-arjit-uni
