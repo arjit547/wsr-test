@@ -1,3 +1,3 @@
 #!/bin/bash
 cd /var/www/html/wsr-arjit
-ls
+sudo apt-get update
