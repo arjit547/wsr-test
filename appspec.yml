@@ -1,6 +1,13 @@
 version: 0.0
 os: linux
+files:
+  - source: /
+    destination: /var/www/html/wsr-arjit
+    # Exclude any files or directories that should not be deployed, if necessary.
 
+  - source: /
+    destination: /var/www/html/wsr-arjit-uni
+    # Exclude any files or directories that should not be deployed, if necessary.
 hooks:
   - location: scripts/application-wsr.sh
     timeout: 300
@@ -10,13 +17,4 @@ hooks:
     timeout: 300
     runas: ubuntu
 
-  # Add more hooks as needed for different lifecycle events.
 
-files:
-  - source: /
-    destination: /var/www/html/wsr-arjit
-    # Exclude any files or directories that should not be deployed, if necessary.
-
-  - source: /
-    destination: /var/www/html/wsr-arjit-uni
-    # Exclude any files or directories that should not be deployed, if necessary.
