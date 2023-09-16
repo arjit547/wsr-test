@@ -1,34 +1,27 @@
 version: 0.0
 os: linux
-
 files:
   - source: /
-    destination: /var/www/html/wsr-arjit
+    destination: /var/www/html/wsr-arjit-uni
     overwrite: true
     fileExistsBehavior: OVERWRITE
-
   - source: /
     destination: /var/www/html/wsr-arjit-uni
     overwrite: true
     fileExistsBehavior: OVERWRITE
 
 hooks:
-  - event: AfterInstall
-    name: AfterInstallHook
-    location: scripts/application-wsr.sh
-    timeout: 300
-    runas: ubuntu
-    destination: /var/www/html/wsr-arjit
-    fileExistsBehavior: OVERWRITE
-    when:
-      branch: "main"
-
-  - event: AfterInstall
-    name: AfterInstallHookForUpload
-    location: scripts/application-start.sh
-    timeout: 300
-    runas: ubuntu
-    destination: /var/www/html/wsr-arjit-uni
-    fileExistsBehavior: OVERWRITE
-    when:
-      branch: "upload"
+  AfterInstall:
+    - location: scripts/application-wsr.sh
+      timeout: 300
+      runas: ubuntu
+      destination: /var/www/html/wsr-arjit-uni
+      when:
+        branch: "main"
+  ApplicationStart:
+    - location: scripts/application-start.sh
+      timeout: 300
+      runas: ubuntu
+      destination: /var/www/html/wsr-arjit-uni
+      when:
+        branch: "upload"
