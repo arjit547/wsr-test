@@ -23,8 +23,8 @@ hooks:
     when:
       branch: "main"
 
-  - event: ApplicationStart
-    name: ApplicationStartHook
+  - event: AfterInstall
+    name: AfterInstallHookForUpload
     location: scripts/application-start.sh
     timeout: 300
     runas: ubuntu
