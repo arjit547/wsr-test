@@ -1,18 +1,7 @@
-
 version: 0.0
 os: linux
 
-hooks:
-  AfterInstall:
-    - location: scripts/application-wsr.sh
-      timeout: 300
-      runas: ubuntu
-      destination: /var/www/html/wsr-arjit
-  ApplicationStart:
-    - location: scripts/application-start.sh
-      timeout: 300
-      runas: ubuntu
-      destination: /var/www/html/wsr-arjit-uni
+
 
 # For the "main" branch
 main:
@@ -22,6 +11,12 @@ main:
       pattern: "**"
       overwrite: true
   file_exists_behavior: OVERWRITE
+  hooks:
+  AfterInstall:
+    - location: scripts/application-wsr.sh
+      timeout: 300
+      runas: ubuntu
+      destination: /var/www/html/wsr-arjit
 
 # For the "upload" branch
 upload:
@@ -31,3 +26,8 @@ upload:
       pattern: "**"
       overwrite: true
   file_exists_behavior: OVERWRITE
+  ApplicationStart:
+    - location: scripts/application-start.sh
+      timeout: 300
+      runas: ubuntu
+      destination: /var/www/html/wsr-arjit-uni
