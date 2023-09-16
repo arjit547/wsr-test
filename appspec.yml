@@ -9,8 +9,7 @@ main:
     - source: /
       destination: /var/www/html/wsr-arjit
       pattern: "**"
-      overwrite: true
-  file_exists_behavior: OVERWRITE
+
   hooks:
   AfterInstall:
     - location: scripts/application-wsr.sh
@@ -24,8 +23,7 @@ upload:
     - source: /
       destination: /var/www/html/wsr-arjit-uni
       pattern: "**"
-      overwrite: true
-  file_exists_behavior: OVERWRITE
+ 
   ApplicationStart:
     - location: scripts/application-start.sh
       timeout: 300
