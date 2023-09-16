@@ -4,11 +4,11 @@ files:
   - source: /
     destination: /var/www/html/wsr-arjit-uni
     overwrite: false
-file_exists_behavior: OVERWRITE
+    file_exists_behavior: OVERWRITE
   - source: /
     destination: /var/www/html/wsr-arjit-uni
     overwrite: false
-file_exists_behavior: OVERWRITE
+    file_exists_behavior: OVERWRITE
 
 hooks:
   AfterInstall:
