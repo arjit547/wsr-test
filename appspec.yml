@@ -3,10 +3,12 @@ os: linux
 files:
   - source: /
     destination: /var/www/html/wsr-arjit
-
+    when:
+        branch: "main"
   - source: /
     destination: /var/www/html/wsr-arjit-uni
-
+    when:
+        branch: "upload"
 
 hooks:
   AfterInstall:
