@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/html/wsr-arjit-uni
+    destination: /var/www/html/wsr-arjit
     overwrite: true
     fileExistsBehavior: OVERWRITE
   - source: /
@@ -15,7 +15,7 @@ hooks:
     - location: scripts/application-wsr.sh
       timeout: 300
       runas: ubuntu
-      destination: /var/www/html/wsr-arjit-uni
+      destination: /var/www/html/wsr-arjit
       when:
         branch: "main"
   ApplicationStart:
