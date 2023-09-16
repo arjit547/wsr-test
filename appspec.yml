@@ -1,15 +1,6 @@
+
 version: 0.0
 os: linux
-files:
-  - source: /
-    destination: /var/www/html/wsr-arjit
-    pattern: "**"
-    overwrite: true
-
-  - source: /
-    destination: /var/www/html/wsr-arjit-uni
-    pattern: "**"
-    overwrite: true
 
 hooks:
   AfterInstall:
@@ -22,3 +13,21 @@ hooks:
       timeout: 300
       runas: ubuntu
       destination: /var/www/html/wsr-arjit-uni
+
+# For the "main" branch
+main:
+  files:
+    - source: /
+      destination: /var/www/html/wsr-arjit
+      pattern: "**"
+      overwrite: true
+  file_exists_behavior: OVERWRITE
+
+# For the "upload" branch
+upload:
+  files:
+    - source: /
+      destination: /var/www/html/wsr-arjit-uni
+      pattern: "**"
+      overwrite: true
+  file_exists_behavior: OVERWRITE
