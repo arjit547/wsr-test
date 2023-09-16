@@ -3,11 +3,11 @@ os: linux
 files:
   - source: /
     destination: /var/www/html/wsr-arjit-uni
-    overwrite: true
+    overwrite: false
     fileExistsBehavior: OVERWRITE
   - source: /
     destination: /var/www/html/wsr-arjit-uni
-    overwrite: true
+    overwrite: false
     fileExistsBehavior: OVERWRITE
 
 hooks:
@@ -16,7 +16,6 @@ hooks:
       timeout: 300
       runas: ubuntu
       destination: /var/www/html/wsr-arjit-uni
-      fileExistsBehavior: OVERWRITE
       when:
         branch: "main"
   ApplicationStart:
@@ -24,6 +23,5 @@ hooks:
       timeout: 300
       runas: ubuntu
       destination: /var/www/html/wsr-arjit-uni
-      fileExistsBehavior: OVERWRITE
       when:
         branch: "upload"
