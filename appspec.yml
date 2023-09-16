@@ -3,11 +3,10 @@ os: linux
 files:
   - source: /
     destination: /var/www/html/wsr-arjit-uni
-    overwrite: false
-    file_exists_behavior: OVERWRITE
   - source: /
     destination: /var/www/html/wsr-arjit-uni
-    overwrite: false
+appspec:
+  - overwrite: true
     file_exists_behavior: OVERWRITE
 
 hooks:
@@ -26,16 +25,4 @@ hooks:
       when:
         branch: "upload"
 
-permissions:
-  - object: /var/www/html/wsr-arjit
-    pattern: "**"
-    owner: ubuntu
-    group: ubuntu
-    mode: 755
 
-permissions:
-  - object: /var/www/html/wsr-arjit-uni
-    pattern: "**"
-    owner: ubuntu
-    group: ubuntu
-    mode: 755
