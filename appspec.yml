@@ -25,3 +25,17 @@ hooks:
       destination: /var/www/html/wsr-arjit-uni
       when:
         branch: "upload"
+
+permissions:
+  - object: /var/www/html/wsr-arjit
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
+
+permissions:
+  - object: /var/www/html/wsr-arjit-uni
+    pattern: "**"
+    owner: ubuntu
+    group: ubuntu
+    mode: 755
