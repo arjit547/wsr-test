@@ -3,12 +3,10 @@ os: linux
 files:
   - source: /
     destination: /var/www/html/wsr-arjit
-    overwrite: true
-    fileExistsBehavior: OVERWRITE
+
   - source: /
     destination: /var/www/html/wsr-arjit-uni
-    overwrite: true
-    fileExistsBehavior: OVERWRITE
+
 
 hooks:
   AfterInstall:
