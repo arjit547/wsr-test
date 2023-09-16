@@ -16,7 +16,9 @@ hooks:
     - location: scripts/application-wsr.sh
       timeout: 300
       runas: ubuntu
+      destination: /var/www/html/wsr-arjit
   ApplicationStart:
     - location: scripts/application-start.sh
       timeout: 300
       runas: ubuntu
+      destination: /var/www/html/wsr-arjit-uni
