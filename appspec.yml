@@ -3,25 +3,30 @@ os: linux
 files:
   - source: /
     destination: /var/www/html/wsr-arjit
-    when:
-        branch: "main"
+    pattern: "**"
+    overwrite: true
+    permissions:
+      - object: "*"
+        owner: "www-data"
+        group: "www-data"
+        mode: "755"
   - source: /
     destination: /var/www/html/wsr-arjit-uni
-    when:
-        branch: "upload"
+    pattern: "**"
+    overwrite: true
+    permissions:
+      - object: "*"
+        owner: "www-data"
+        group: "www-data"
+        mode: "755"
 
 hooks:
   AfterInstall:
     - location: scripts/application-wsr.sh
       timeout: 300
       runas: ubuntu
-      destination: /var/www/html/wsr-arjit
-      when:
-        branch: "main"
   ApplicationStart:
     - location: scripts/application-start.sh
       timeout: 300
       runas: ubuntu
-      destination: /var/www/html/wsr-arjit-uni
-      when:
-        branch: "upload"
+
