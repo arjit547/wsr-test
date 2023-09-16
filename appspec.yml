@@ -7,7 +7,7 @@ files:
     destination: /var/www/html/wsr-arjit-uni
 appspec:
   - overwrite: true
-    file_exists_behavior: OVERWRITE
+    fileExistsBehavior: OVERWRITE
 
 hooks:
   AfterInstall:
