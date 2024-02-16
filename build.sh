@@ -30,6 +30,9 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Change directory to the extracted ZAP directory
+cd zap/ZAP_D-2024-02-12
+
 # Run ZAP command
 ./zap.sh -cmd -quickurl https://bolly4u.wine -quickprogress -quickout ../zap_report.html
 
@@ -39,14 +42,17 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Change directory back to the original location
+cd -
+
 # Check if the report file was generated
-if [ ! -f "../zap_report.html" ]; then
+if [ ! -f "zap_report.html" ]; then
     echo "ZAP report file not found. Exiting."
     exit 1
 fi
 
 # Copy report file to S3 bucket
-aws s3 cp ../zap_report.html s3://pipelinezapout/
+aws s3 cp zap_report.html s3://pipelinezapout/
 
 # Check if file copy was successful
 if [ $? -ne 0 ]; then
