@@ -9,11 +9,10 @@ apt-get -y install wget
 # Install default JDK
 apt-get -y install default-jdk
 
-# Specify the desired version or build identifier
-ZAP_VERSION="w2024-02-12"
+
 
 # Download the specified version of OWASP ZAP, bypassing certificate verification
-wget --no-check-certificate "https://builds.apache.org/job/ZAP_WEEKLY_D/lastSuccessfulBuild/artifact/${ZAP_VERSION}.zip" -O zap.zip
+wget https://github.com/zaproxy/zaproxy/releases/download/v2.11.1/ZAP_2.11.1_Linux.tar.gz
 
 # Check if download was successful
 if [ $? -ne 0 ]; then
@@ -21,14 +20,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Extract OWASP ZAP
-unzip zap.zip -d zap
 
-# Check if extraction was successful
-if [ $? -ne 0 ]; then
-    echo "Failed to extract OWASP ZAP. Exiting."
-    exit 1
-fi
 
 # Run ZAP command
 ./zap.sh -cmd -quickurl https://bolly4u.wine -quickprogress -quickout ../zap_report.html
