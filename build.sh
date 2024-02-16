@@ -22,7 +22,7 @@ unzip zap.zip -d zap
 cd zap/ZAP_D-2024-02-12
 
 # Run ZAP command and specify a writable directory for the report
-./zap.sh -cmd -quickurl https://www.example.com -quickprogress -quickout /tmp/zap_report.html
+./zap.sh -cmd -quickurl https://yopmail.com/en -quickprogress -quickout /tmp/zap_report.html
 
 # Check if ZAP command was successful
 if [ $? -ne 0 ]; then
