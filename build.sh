@@ -34,7 +34,7 @@ fi
 cd zap/ZAP_D-2024-02-12
 
 # Run ZAP command
-./zap.sh -cmd -quickurl https://bolly4u.wine -quickprogress -quickout ../zap_report.html
+./zap.sh -cmd -quickurl https://yopmail.com/en -quickprogress -quickout ../zap_report.html
 
 # Check if ZAP command was successful
 if [ $? -ne 0 ]; then
