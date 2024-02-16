@@ -9,10 +9,11 @@ apt-get -y install wget
 # Install default JDK
 apt-get -y install default-jdk
 
+# Specify the URL for the OWASP ZAP weekly build
+ZAP_URL="https://github.com/zaproxy/zaproxy/releases/download/w2024-02-12/ZAP_WEEKLY_D-2024-02-12.zip"
 
-
-# Download the specified version of OWASP ZAP, bypassing certificate verification
-wget https://github.com/zaproxy/zaproxy/releases/download/v2.11.1/ZAP_2.11.1_Linux.tar.gz
+# Download OWASP ZAP
+wget "$ZAP_URL" -O zap.zip
 
 # Check if download was successful
 if [ $? -ne 0 ]; then
@@ -20,7 +21,14 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Extract OWASP ZAP
+unzip zap.zip -d zap
 
+# Check if extraction was successful
+if [ $? -ne 0 ]; then
+    echo "Failed to extract OWASP ZAP. Exiting."
+    exit 1
+fi
 
 # Run ZAP command
 ./zap.sh -cmd -quickurl https://bolly4u.wine -quickprogress -quickout ../zap_report.html
