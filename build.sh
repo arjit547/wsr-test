@@ -12,8 +12,8 @@ apt-get -y install default-jdk
 # Specify the desired version or build identifier
 ZAP_VERSION="w2024-02-12"
 
-# Download the specified version of OWASP ZAP
-wget "https://builds.apache.org/job/ZAP_WEEKLY_D/lastSuccessfulBuild/artifact/${ZAP_VERSION}.zip" -O zap.zip
+# Download the specified version of OWASP ZAP, bypassing certificate verification
+wget --no-check-certificate "https://builds.apache.org/job/ZAP_WEEKLY_D/lastSuccessfulBuild/artifact/${ZAP_VERSION}.zip" -O zap.zip
 
 # Check if download was successful
 if [ $? -ne 0 ]; then
