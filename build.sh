@@ -21,16 +21,28 @@ unzip zap.zip -d zap
 # Change directory to the extracted ZAP directory
 cd zap/ZAP_D-2024-02-12
 
-# Run ZAP command
-./zap.sh -cmd -quickurl https://www.example.com -quickprogress -quickout zap_report.html
+# Run ZAP command and specify a writable directory for the report
+./zap.sh -cmd -quickurl https://www.example.com -quickprogress -quickout /tmp/zap_report.html
+
+# Check if ZAP command was successful
+if [ $? -ne 0 ]; then
+    echo "Failed to run ZAP command. Exiting."
+    exit 1
+fi
 
 # Move the report file to the correct location
-mv zap_report.html ../../
+mv /tmp/zap_report.html ../../
 
 # Change directory back to the original location
 cd -
 
 # Copy report file to S3 bucket
 aws s3 cp zap_report.html s3://pipelinezapout/
+
+# Check if file copy was successful
+if [ $? -ne 0 ]; then
+    echo "Failed to copy report file to S3 bucket. Exiting."
+    exit 1
+fi
 
 echo "ZAP scan and report generation completed successfully."
