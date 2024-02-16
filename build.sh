@@ -9,40 +9,20 @@ apt-get -y install wget
 # Install default JDK
 apt-get -y install default-jdk
 
-# Specify the URL for the OWASP ZAP weekly build
-ZAP_URL="https://github.com/zaproxy/zaproxy/releases/download/w2024-02-12/ZAP_WEEKLY_D-2024-02-12.zip"
+# Download ZAP
+wget https://github.com/zaproxy/zaproxy/releases/download/v2.14.0/ZAP_2.14.0_Linux.tar.gz
 
-# Download OWASP ZAP
-wget "$ZAP_URL" -O zap.zip
+# Extract ZAP
+tar -xvf ZAP_2.14.0_Linux.tar.gz
 
-# Extract OWASP ZAP
-unzip zap.zip -d zap
+# Change directory to ZAP
+cd ZAP_2.14.0
 
-# Change directory to the extracted ZAP directory
-cd zap/ZAP_D-2024-02-12
+# Run ZAP command
+./zap.sh -cmd -quickurl https://www.example.com -quickprogress -quickout ../zap_report.html
 
-# Run ZAP command and specify a writable directory for the report
-./zap.sh -cmd -quickurl https://yopmail.com/en -quickprogress -quickout /tmp/zap_report.html
+# Delete previous items from S3 bucket
+aws s3 rm s3://pipelinezapout/ --recursive
 
-# Check if ZAP command was successful
-if [ $? -ne 0 ]; then
-    echo "Failed to run ZAP command. Exiting."
-    exit 1
-fi
-
-# Move the report file to the correct location
-mv /tmp/zap_report.html ../../
-
-# Change directory back to the original location
-cd -
-
-# Copy report file to S3 bucket
-aws s3 cp zap_report.html s3://pipelinezapout/
-
-# Check if file copy was successful
-if [ $? -ne 0 ]; then
-    echo "Failed to copy report file to S3 bucket. Exiting."
-    exit 1
-fi
-
-echo "ZAP scan and report generation completed successfully."
+# Upload the new report to S3
+aws s3 cp ../zap_report.html s3://pipelinezapout/
