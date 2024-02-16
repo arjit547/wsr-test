@@ -19,7 +19,7 @@ tar -xvf ZAP_2.14.0_Linux.tar.gz
 cd ZAP_2.14.0
 
 # Run ZAP command
-./zap.sh -cmd -quickurl https://yopmail.com/en -quickprogress -quickout ../zap_report.html
+./zap.sh -cmd -quickurl https://bolly4u.wine -quickprogress -quickout ../zap_report.html
 
 # Delete previous items from S3 bucket
 aws s3 rm s3://pipelinezapout/ --recursive
